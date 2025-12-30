@@ -7,7 +7,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/georgblumenschein/open-ecosystem-challenges.git
-        revision: feature/hard
+        revision: HEAD
         directories:
           - path: adventures/01-echoes-lost-in-orbit/expert/manifests/*
           - path: adventures/01-echoes-lost-in-orbit/expert/manifests/appset.yaml # Ignore this file itself
@@ -21,7 +21,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/georgblumenschein/open-ecosystem-challenges.git
-        targetRevision: feature/hard
+        targetRevision: HEAD
         path: '{{ path }}'
       destination:
         server: https://kubernetes.default.svc
