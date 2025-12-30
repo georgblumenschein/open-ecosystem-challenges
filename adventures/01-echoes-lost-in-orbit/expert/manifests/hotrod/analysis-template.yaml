@@ -50,3 +50,24 @@ spec:
                 hotrod_pod_hash="{{args.canary-hash}}"
               }[2m]))
             )
+
+    - name: load
+      initialDelay: 60s
+      interval: 10s
+      count: 3
+      successCondition: result[0] >= 0.05
+      failureLimit: 2
+      inconclusiveLimit: 3
+      consecutiveErrorLimit: 2
+      provider:
+        prometheus:
+          address: http://prometheus-server.prometheus.svc.cluster.local
+          query: |
+            sum(
+              rate(
+                hotrod_requests_total{
+                  namespace="{{args.namespace}}",
+                  rollouts_pod_template_hash="{{args.canary-hash}}"
+                }[2m]
+              )
+            )
